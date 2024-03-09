@@ -5,12 +5,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Create Invoice</title>
+    
 </head>
 <body>
+
     <h2>Create Invoice</h2>
+    
+
     {% if error_message %}
         <p style="color: red;">{{ error_message }}</p>
     {% endif %}
+    
     <form method="post" action="{% url 'add_invoice' %}">
         {% csrf_token %}
         <label for="invoice_id">Invoice ID:</label>
@@ -35,6 +40,8 @@
         <input type="text" name="pay_id" required><br>
 
         <input type="submit" value="Submit">
+        
     </form>
+    <button onclick="window.location.href='/invoice-list/' ">invoice list</button>
 </body>
 </html>

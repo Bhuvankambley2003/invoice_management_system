@@ -22,13 +22,18 @@ app_name = 'mini'
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('',views.index,name='index'),
+    path('', views.login_view, name='login'),
+    # path('',views.index,name='index'),
     path('invoice-list/', views.invoice_list, name='invoice_list'),
-    path('add-invoice/', views.add_invoice, name='add_invoice'),
+    path('invoice-list/add-invoice/', views.add_invoice, name='add_invoice'),
     path('edit-invoice/<int:invoice_id>/', views.edit_invoice, name='edit_invoice'),
     path('delete-invoice/<int:invoice_id>/', views.delete_invoice, name='delete_invoice'),
-   
-    
+    path('customer-details/<int:cust_id>/', views.customer_details, name='customer_details'),
+    path('invoice-items/<int:invoice_id>/', views.invoice_items, name='invoice_items'),
+    path('add-customer/', views.add_customer, name='add_customer'),
+    path('edit-item/<int:id>/', views.edit_item, name='edit_item'),
+    path('delete-item/<int:id>/', views.delete_item, name='delete_item'),
+    path('add-item/<int:id>/', views.add_item, name='add_item')
 ]
 
 

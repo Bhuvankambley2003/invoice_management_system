@@ -1,25 +1,35 @@
 from django.db import models
 
-class Employee(models.Model):  
-    name = models.CharField(max_length=100)  
-    email = models.EmailField()  
-    contact = models.CharField(max_length=15) 
-   
-    class Meta:  
-        db_table = "tblemployee"
-
-
-
 
 class Invoice(models.Model):
     invoice_id = models.IntegerField(primary_key=True)
     cust_id = models.IntegerField()
     invoice_date = models.CharField(max_length=10)
     due_date = models.CharField(max_length=10)
-    total_amt = models.DecimalField(max_digits=10, decimal_places=2)
-    status = models.CharField(max_length=50)
+    total_amt = models.CharField(max_length=40)
+    status = models.CharField(max_length=75)
     pay_id = models.IntegerField()
     
     class Meta:
         db_table = "invoices"
+
+
+class Customer(models.Model):
+    cust_id = models.AutoField(primary_key=True)
+    first_name = models.CharField(max_length=50)
+    last_name = models.CharField(max_length=50)
+    email_id = models.EmailField(max_length=50)
+    login_id = models.IntegerField(max_length=10)
+    ph = models.IntegerField(max_length=50)
+
+    class Meta:
+        db_table = "customers"
+
+class Item(models.Model):
+    invoice_id = models.IntegerField()
+    item_name = models.CharField(max_length=20)
+    item_price = models.IntegerField()
+    id = models.AutoField(primary_key=True)
+    class Meta:
+        db_table = "items"
 

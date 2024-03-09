@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -21,7 +20,19 @@
     </style>
 </head>
 <body>
+    {% if messages %}
+        <script>
+            alert("{{ messages }}");
+        </script>
+    {% endif %}
     <h1>Invoice List</h1>
+    <button onclick="window.location.href='add-invoice/' ">add invoice</button>
+    <br>
+    <br>
+    <button onclick="window.location.href='/add-customer/' ">add customer</button>
+    <br>
+    <br>
+
     <table>
         <thead>
             <tr>
@@ -32,30 +43,37 @@
                 <th>Total Amount</th>
                 <th>Status</th>
                 <th>Payment ID</th>
+                <th>Edit</th>
+                <th>Delete</th>
             </tr>
         </thead>
         <tbody>
             {% for inv in invoice %}
                 <tr>
-                    <td>{{ inv.invoice_id }}</td>
-                    <td>{{ inv.cust_id }}</td>
+                    <td><a href="/invoice-items/{{inv.invoice_id}}">{{ inv.invoice_id }}</a></td>
+                    <td><a href="/customer-details/{{inv.cust_id }}">{{ inv.cust_id }}</a></td>
                     <td>{{ inv.invoice_date }}</td>
                     <td>{{ inv.due_date }}</td>
                     <td>{{ inv.total_amt }}</td>
                     <td>{{ inv.status }}</td>
                     <td>{{ inv.pay_id }}</td>
-                    <td>
-                        <a href="/edit-invoice/{{ inv.invoice_id }}/">
-                            Edit
-                        </a>
-                    
-                    </td>
-
-                    <td><a href="/delete-invoice/{{inv.invoice_id}}/">Delete</a>
-                    </td>
+                    <!-- <td>
+                        <a href="/customer-details/{{inv.cust_id }}">Customer Details
+                    </td> -->
+                    {% if user.is_superuser %}
+                        <td>
+                            <a href="/edit-invoice/{{ inv.invoice_id }}/">
+                                Edit
+                            </a>
+                        </td>
+                        <td>
+                            <a href="/delete-invoice/{{inv.invoice_id}}/">Delete</a>
+                        </td>
+                    {% endif %}
                 </tr>
             {% endfor %}
         </tbody>
     </table>
+    <button onclick="window.location.href='/' ">logout</button>
 </body>
 </html>
