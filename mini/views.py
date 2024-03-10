@@ -100,8 +100,9 @@ def customer_details(request, cust_id):
 
 
 def invoice_items(request, invoice_id):
+    inv_id=invoice_id
     products = Item.objects.filter(invoice_id=invoice_id)
-    return render(request, 'invoice_items.html', {'products': products})
+    return render(request, 'invoice_items.html', {'products': products,'inv_id': inv_id})
 
 
 def add_customer(request):
