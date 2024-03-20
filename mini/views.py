@@ -8,7 +8,7 @@ from .models import Customer
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login
 from django.contrib import messages
-
+from .models import Payments
 
 
 def login_view(request):
@@ -173,3 +173,7 @@ def add_item(request, id):
         return redirect('/invoice-list')
 
     return render(request, 'add_item.html')
+
+def payment(request, pay):
+    payments = Payments.objects.filter(pay_id=pay)
+    return render(request, 'payments.html', {'payments': payments})

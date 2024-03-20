@@ -33,3 +33,16 @@ class Item(models.Model):
     class Meta:
         db_table = "items"
 
+
+
+class Payments(models.Model):
+
+    pay_id = models.IntegerField(primary_key=True)
+    bank_name = models.CharField(max_length=20, null=True)
+    account_no = models.CharField(max_length=25, null=True)
+    isfc = models.CharField(max_length=15, null=True)
+
+    class Meta:
+        db_table="payments"
+
+

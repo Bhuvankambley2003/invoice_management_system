@@ -1,8 +1,10 @@
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Customer Details</title>
+    <title>Payments</title>
     <style>
         body {
             background-color: #f2f2f2;
@@ -46,12 +48,30 @@
     </style>
 </head>
 <body>
-    <h2>Customer Details</h2>
-    <p>Customer ID: {{ customer.cust_id }}</p>
-    <p>First Name: {{ customer.first_name }}</p>
-    <p>Last Name: {{ customer.last_name }}</p>
-    <p>Email ID: {{ customer.email_id }}</p>
-    <p>Login_id: {{ customer.login_id }}</p>
-    <p>Phone NO: {{ customer.ph }}</p>
+    <h1>Payments</h1>
+    <table>
+        <thead>
+            <tr>
+                 
+                <th>Payments id</th>
+                <th>Bank_Name</th>
+                <th>Account</th>
+                <th>IFSC</th>
+                              
+            </tr>
+        </thead>
+        <tbody>
+            {% for gg in payments %}
+            <tr>
+              
+                <td>{{ gg.pay_id }}</td>
+                <td>{{ gg.bank_name }}</td>
+                <td>{{ gg.account_no }}</td>
+                <td>{{ gg.isfc }}</td>    
+            </tr>
+            {% endfor %}
+        </tbody>
+
+    </table>
 </body>
 </html>
